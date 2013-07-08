@@ -4,8 +4,8 @@ import socket
 from sys import argv,exit
 from array import array
 from time import sleep
-if len(argv) < 2 or argv[1] == '-h' or argv[1] == '--help' or argv[1] == '?':
-  print "usage: python modbus_write_client.py Host Unit FC Address Data[1….n]"
+if len(argv) < 6 or argv[1] == '-h' or argv[1] == '--help' or argv[1] == '?':
+  print "usage: python modbus_write_client.py Host Unit FC Address Data[1...n]"
   exit()
 PORT = 502    # The same port as used by the server
 HOST = argv[1]  # The remote host

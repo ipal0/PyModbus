@@ -5,7 +5,7 @@ from sys import argv,exit
 from array import array
 from struct import *
 from time import sleep
-if len(argv) < 2 or argv[1] == '-h' or argv[1] == '--help' or argv[1] == '?':
+if len(argv) < 6 or argv[1] == '-h' or argv[1] == '--help' or argv[1] == '?':
   print "usage: python modbus_read_client.py Host Unit FC Address Length"
   exit()
 HOST = argv[1]  # The remote host
