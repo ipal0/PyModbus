@@ -4,7 +4,6 @@
 import socket
 from sys import argv,exit
 from array import array
-from struct import *
 from time import sleep
 if len(argv) < 7 or argv[1] == '-h' or argv[1] == '--help' or argv[1] == '?':
   print "usage: python modbus_rtu_read.py Host Port Unit FC Address Length"
