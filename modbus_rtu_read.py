@@ -38,7 +38,7 @@ cmd = array('B', [UNIT,FC,mADD,lADD,mLEN,lLEN])
 crc = CRC(cmd)
 lcrc = crc & 0x00FF
 mcrc = (crc & 0xFF00)>>8
-cmd = array('B', [UNIT,FC,mADD,lADD,mLEN,lLEN,mcrc,lcrc]) 
+cmd = array('B', [UNIT,FC,mADD,lADD,mLEN,lLEN,lcrc,mcrc]) 
 while 1:
   s.send(cmd)
   buffer = array('B', [0]*(BYT+7))
