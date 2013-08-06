@@ -1,7 +1,7 @@
 #!/usr/bin/python  
 # version 2.7
 # Read Modbus RTU Serial 
-from serial import Serial,SerialException
+from serial import Serial
 from sys import argv,exit
 from struct import pack_into
 from array import array
