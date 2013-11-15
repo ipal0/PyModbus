@@ -19,6 +19,7 @@ def TCP(conn,addr,F):
       ADR = mADR*256+lADR
       LEN = buffer[10]*256+buffer[11]
       BYT = LEN*2
+      print "Received = ",buffer[0:13+buffer[12]]
       if (FC < 5 and FC > 0):   #Read Inputs or Registers
         DAT = array('B')
         if FC < 3: 
@@ -35,20 +36,22 @@ def TCP(conn,addr,F):
               lADR = 0
               mADR = mADR + 1
             else: lADR = lADR + 1
-        print "Received = ",buffer[0:12]
         print "ID= %d,  Fun.Code= %d,  Address= %d,  Length= %d" %(ID, FC, ADR, LEN)
         conn.send(array('B', [0,0,0,0,0, BYT+3, ID, FC, BYT]) + DAT )
-      elif (FC == 15 or FC == 16):    #Write Registers
+      elif (FC == 15 or FC == 16 or FC == 6):    #Write Registers
         BYT = buffer[12]
         conn.send(array('B', [0,0,0,0,0, 6, ID, FC, mADR, lADR, buffer[10], buffer[11] ] ) )
         buf = buffer[13:(13+BYT)]
-        message = ':  ADR:'+str(ADR)+' '
+        message = ': ADR:'+str(ADR)+' '
         if FC == 15:
           print "ID= %d,  Fun.Code= %d,  Address= %d,  Length= %d,  Bytes= %d" %(ID, FC, ADR, LEN, BYT)
           for j in range(BYT):  message = message+('Byte:'+str(j)+'='+str(buf[j])+', ')
         elif FC == 16:
           print "ID= %d,  Fun.Code= %d,  Address= %d,  Length= %d,  Bytes= %d" %(ID, FC, ADR, LEN, BYT)
           for j in range(BYT/2): message = message+('Reg:'+str(j)+'='+str((buf[j*2]<<8)+(buf[j*2+1]))+', ')
+        elif FC == 6:
+          print "ID= %d,  Fun.Code= %d,  Address= %d, Bytes= %d" %(ID, FC, ADR, LEN)
+          message = message+('Reg:'+str(LEN))  
         print message
         F.write(ctime() + message + "\n")
       else: 
