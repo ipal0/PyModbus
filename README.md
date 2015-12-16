@@ -1,5 +1,5 @@
 #PyModbus
-## Modbus Client and Server written in Python.
+## Modbus Client and Server written in Python-2.7.
 * Modbus Read Client 
 * Modbus Write Client
 * Modbus Server
